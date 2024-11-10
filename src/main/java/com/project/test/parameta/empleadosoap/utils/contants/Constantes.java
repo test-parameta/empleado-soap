@@ -1,39 +1,64 @@
 package com.project.test.parameta.empleadosoap.utils.contants;
 
+/**
+ * Clase de constantes para el servicio SOAP de empleados.
+ * <p>
+ * Contiene valores constantes utilizados en diferentes partes del sistema,
+ * como configuraciones de namespace, cadenas de caracteres, configuraciones de correo electrónico,
+ * y otros valores relevantes.
+ * </p>
+ */
 public class Constantes {
 
-    public final static String NAMESPACE_URI = "http://example.com/soap";
+    /** URI del espacio de nombres para el servicio SOAP. */
+    public static final String NAMESPACE_URI = "http://example.com/soap";
 
-    public final static String CREACION_EMPLEADO_OK = "Se creo correctamente el empleado";
+    /** Mensaje de éxito al crear un empleado. */
+    public static final String CREACION_EMPLEADO_OK = "Se creó correctamente el empleado";
 
-    public final static String CREACION_EMPLEADO_ERROR = "Error en el guardado del empleado {}";
+    /** Mensaje de error para el guardado de un empleado con detalles. */
+    public static final String CREACION_EMPLEADO_ERROR = "Error en el guardado del empleado {}";
 
-    public final static String ERROR_GUARDADO_EMPLEADO = "Error en el guardado del empleado";
+    /** Mensaje de error genérico para el guardado de un empleado. */
+    public static final String ERROR_GUARDADO_EMPLEADO = "Error en el guardado del empleado";
 
-    public final static String CARACTERES_PASSWORD = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+=<>?";
+    /** Caracteres permitidos para generar contraseñas aleatorias. */
+    public static final String CARACTERES_PASSWORD = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+=<>?";
 
-    public final static String CARACTERES_CORREO = "abcdefghijklmnopqrstuvwxyz0123456789";
+    /** Caracteres permitidos para generar nombres de usuario en correos electrónicos. */
+    public static final String CARACTERES_CORREO = "abcdefghijklmnopqrstuvwxyz0123456789";
 
-    public final static String[] DOMINIOS ={"gmail.com", "yahoo.com", "outlook.com", "hotmail.com", "example.com"};
+    /** Lista de dominios disponibles para generar correos electrónicos. */
+    public static final String[] DOMINIOS = {"gmail.com", "yahoo.com", "outlook.com", "hotmail.com", "example.com"};
 
-    public final static char ARROBA = '@';
+    /** Carácter de arroba utilizado en correos electrónicos. */
+    public static final char ARROBA = '@';
 
-    public final static int LENGTH_MAX = 10;
+    /** Longitud máxima para contraseñas generadas automáticamente. */
+    public static final int LENGTH_MAX = 10;
 
-    public final static String LOCAL_PART = "guardarEmpleadoRequest";
+    /** Nombre del localPart utilizado en las solicitudes SOAP. */
+    public static final String LOCAL_PART = "guardarEmpleadoRequest";
 
-    public final static String CONTEXT_PATH = "com.project.test.parameta.empleadosoap.gen";
+    /** Context path para las clases generadas del servicio SOAP. */
+    public static final String CONTEXT_PATH = "com.project.test.parameta.empleadosoap.gen";
 
-    public final static String URL_MAPPINGS = "/ws/*";
+    /** Mapeo de URL para las solicitudes SOAP. */
+    public static final String URL_MAPPINGS = "/ws/*";
 
-    public final static String SOAP = "soap";
+    /** Nombre del qualifier utilizado para identificar el bean del servicio SOAP. */
+    public static final String SOAP = "soap";
 
-    public final static String PORT_TYPE_NAME = "EmpeladoPort";
+    /** Nombre del portType definido en el WSDL. */
+    public static final String PORT_TYPE_NAME = "EmpleadoPort";
 
-    public final static String LOCATION_URI = "/ws";
+    /** URI de ubicación para el servicio SOAP. */
+    public static final String LOCATION_URI = "/ws";
 
-    public final static String NAME_BEAN_SOAP = "empleado-soap";
+    /** Nombre del bean definido para el servicio SOAP. */
+    public static final String NAME_BEAN_SOAP = "empleado-soap";
 
-    public final static String DIRECCION_XSD = "empleado.xsd";
+    /** Dirección del archivo XSD utilizado para definir el esquema del servicio SOAP. */
+    public static final String DIRECCION_XSD = "empleado.xsd";
 
 }

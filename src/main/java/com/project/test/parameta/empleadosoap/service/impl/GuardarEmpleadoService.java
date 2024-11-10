@@ -23,18 +23,46 @@ import java.util.Random;
 
 import static com.project.test.parameta.empleadosoap.utils.contants.Constantes.*;
 
+/**
+ * Servicio para gestionar el guardado de empleados en el sistema.
+ * <p>
+ * Implementa la interfaz {@link IGuardarEmpleadoService} y proporciona
+ * la lógica necesaria para recibir, procesar y almacenar información de empleados
+ * utilizando un servicio web SOAP.
+ * </p>
+ */
 @Service
 @Log4j2
 public class GuardarEmpleadoService implements IGuardarEmpleadoService {
 
+    /**
+     * Repositorio para la entidad {@link com.project.test.parameta.commons.entity.EmpleadoEntity}.
+     */
     private final EmpleadoRepository empleadoRepository;
 
+    /**
+     * Mapper para convertir entre {@link EmpleadoElement} y {@link EmpleadoDTO}.
+     */
     private final EmpleadoElementMapper empleadoElementMapper;
 
+    /**
+     * Codificador para encriptar contraseñas de empleados.
+     */
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     * Mapper para convertir entre {@link EmpleadoDTO} y {@link com.project.test.parameta.commons.entity.EmpleadoEntity}.
+     */
     private final EmpleadoMapper empleadoMapper;
 
+    /**
+     * Constructor del servicio.
+     *
+     * @param empleadoRepository      el repositorio para manejar las operaciones de la entidad Empleado.
+     * @param empleadoElementMapper   el mapper para transformar elementos entre modelos SOAP y DTO.
+     * @param passwordEncoder         el codificador para encriptar contraseñas.
+     * @param empleadoMapper          el mapper para transformar entre DTO y entidad.
+     */
     public GuardarEmpleadoService(
             @Qualifier(SOAP) EmpleadoRepository empleadoRepository,
             EmpleadoElementMapper empleadoElementMapper,
@@ -45,7 +73,6 @@ public class GuardarEmpleadoService implements IGuardarEmpleadoService {
         this.passwordEncoder = passwordEncoder;
         this.empleadoMapper = empleadoMapper;
     }
-
     @Override
     @Transactional
     public GuardarEmpleadoResponse guardarEmpleado(EmpleadoElement empleadoElement) {
@@ -72,7 +99,13 @@ public class GuardarEmpleadoService implements IGuardarEmpleadoService {
         return guardarEmpleadoResponse;
     }
 
-    private String generarContrasena(int longitud){
+    /**
+     * Genera una contraseña aleatoria con una longitud específica.
+     *
+     * @param longitud la longitud deseada para la contraseña.
+     * @return una contraseña aleatoria como cadena de texto.
+     */
+    private String generarContrasena(int longitud) {
         String caracteres = CARACTERES_PASSWORD;
         SecureRandom random = new SecureRandom();
         StringBuilder contrasena = new StringBuilder();
@@ -85,7 +118,16 @@ public class GuardarEmpleadoService implements IGuardarEmpleadoService {
         return contrasena.toString();
     }
 
-    private String generarCorreo(){
+    /**
+     * Genera un correo electrónico aleatorio para el empleado.
+     * <p>
+     * Combina un nombre de usuario aleatorio con un dominio seleccionado aleatoriamente
+     * de una lista predefinida.
+     * </p>
+     *
+     * @return una dirección de correo electrónico generada aleatoriamente.
+     */
+    private String generarCorreo() {
         String caracteres = CARACTERES_CORREO;
         String[] dominios = DOMINIOS;
         Random random = new Random();
@@ -104,5 +146,6 @@ public class GuardarEmpleadoService implements IGuardarEmpleadoService {
         // Combinar nombre de usuario y dominio
         return usuario.append(ARROBA).append(dominio).toString();
     }
+
 
 }
