@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://example.com/soap"
+           xmlns="http://example.com/soap"
+           elementFormDefault="qualified">
+
+    <!-- Tipo complejo para EmpleadoDTO -->
+    <xs:complexType name="EmpleadoElement">
+        <xs:sequence>
+            <xs:element name="codigoEmpleado" type="xs:string" minOccurs="0"/>
+            <xs:element name="nombreEmpleado" type="xs:string" minOccurs="0"/>
+            <xs:element name="apellidosEmpleado" type="xs:string" minOccurs="0"/>
+            <xs:element name="numeroDocumentoEmpleado" type="xs:string" minOccurs="0"/>
+            <xs:element name="fechaNacimientoEmpleado" type="xs:date" minOccurs="0"/>
+            <xs:element name="fechaVinculacionEmpleado" type="xs:date" minOccurs="0"/>
+            <xs:element name="cargoFk" type="CargoElement" minOccurs="0"/>
+            <xs:element name="tipoDocumentoFk" type="TipoDocumentoElement" minOccurs="0"/>
+            <xs:element name="correoEmpleado" type="xs:string" minOccurs="0"/>
+            <xs:element name="salarioEmpleado" type="xs:double" minOccurs="0"/>
+            <xs:element name="hashPassword" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Tipo complejo para CargoDTO -->
+    <xs:complexType name="CargoElement">
+        <xs:sequence>
+            <!-- Define los campos dentro de CargoDTO aquí -->
+            <xs:element name="idCargo" type="xs:integer" minOccurs="0"/>
+            <xs:element name="nombreCargo" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Tipo complejo para TipoDocumentoDTO -->
+    <xs:complexType name="TipoDocumentoElement">
+        <xs:sequence>
+            <!-- Define los campos dentro de TipoDocumentoDTO aquí -->
+            <xs:element name="idTipoDocumento" type="xs:integer" minOccurs="0"/>
+            <xs:element name="nombreTipoDocumento" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RespuestaGeneralElement">
+        <xs:sequence>
+            <!-- Definimos el status -->
+            <xs:element name="status" type="HttpStatusElement" minOccurs="0"/>
+            <!-- Data puede ser cualquier cosa -->
+            <xs:element name="data" type="xs:string" minOccurs="0"/>
+            <!-- Mensaje -->
+            <xs:element name="message" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Tipo complejo para HttpStatus -->
+    <xs:simpleType name="HttpStatusElement">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OK"/>
+            <xs:enumeration value="CREATED"/>
+            <xs:enumeration value="BAD_REQUEST"/>
+            <xs:enumeration value="UNAUTHORIZED"/>
+            <xs:enumeration value="FORBIDDEN"/>
+            <xs:enumeration value="NOT_FOUND"/>
+            <xs:enumeration value="INTERNAL_SERVER_ERROR"/>
+            <!-- Agrega otros estados HTTP según sea necesario -->
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Elementos raíz para operaciones -->
+    <xs:element name="guardarEmpleadoRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="empleado" type="EmpleadoElement"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="guardarEmpleadoResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="respuesta" type="RespuestaGeneralElement"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
